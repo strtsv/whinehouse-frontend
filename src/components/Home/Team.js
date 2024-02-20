@@ -2,9 +2,9 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import $ from "jquery";
 
-import i1 from "../../assets/images/team-18-250x233.jpg"
-import i2 from "../../assets/images/team-19-250x233.jpg"
-import i3 from "../../assets/images/team-20-250x233.jpg"
+import i1 from "../../assets/images/team-18-250x233.jpg";
+import i2 from "../../assets/images/team-19-250x233.jpg";
+import i3 from "../../assets/images/team-20-250x233.jpg";
 
 var isNoviBuilder = false;
 var c = $(".owl-carousel");
@@ -30,10 +30,14 @@ const options = {
   navText: c.attr("data-nav-text") ? $.parseJSON(c.attr("data-nav-text")) : [],
   navClass: c.attr("data-nav-class")
     ? $.parseJSON(c.attr("data-nav-class"))
-    : ["owl-prev", "owl-next"],
+    : ["owl-prev", "owl-next"]
 };
 
 class Team extends React.Component {
+  componentDidMount() {
+    $(document).ready(function() {
+    });
+  }
   render() {
     return (
       <section className="section section-xxl bg-default">
@@ -57,12 +61,7 @@ class Team extends React.Component {
               >
                 <div className="team-karen-header">
                   <a className="team-karen-figure" href="#">
-                    <img
-                      src={i1}
-                      alt
-                      width={250}
-                      height={233}
-                    />
+                    <img src={i1} alt width={250} height={233} />
                   </a>
                   <svg
                     x="0px"
@@ -99,12 +98,7 @@ class Team extends React.Component {
               <article className="team-karen wow slideInUp">
                 <div className="team-karen-header">
                   <a className="team-karen-figure" href="#">
-                    <img
-                      src={i2}
-                      alt
-                      width={250}
-                      height={233}
-                    />
+                    <img src={i2} alt width={250} height={233} />
                   </a>
                   <svg
                     x="0px"
@@ -144,12 +138,7 @@ class Team extends React.Component {
               >
                 <div className="team-karen-header">
                   <a className="team-karen-figure" href="#">
-                    <img
-                      src={i3}
-                      alt
-                      width={250}
-                      height={233}
-                    />
+                    <img src={i3} alt width={250} height={233} />
                   </a>
                   <svg
                     x="0px"

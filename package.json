@@ -9,7 +9,10 @@
     "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-owl-carousel": "^2.3.3",
+    "react-router-dom": "^5.2.1",
     "react-scripts": "3.4.1",
+    "react-slick": "^0.30.2",
     "swiper": "^6.0.2",
     "wowjs": "^1.1.3"
   },
