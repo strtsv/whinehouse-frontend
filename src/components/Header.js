@@ -1,7 +1,10 @@
 import React from "react";
 import $ from "jquery";
 
+import "../assets/js/jquery.easing.1.3.js";
+import "../assets/js/tmstickup.js";
 import { WOW } from "../assets/js/wow.js";
+import "../assets/js/jquery.ui.totop.my.js";
 
 import i1 from "../assets/images/logo-default-4-272x170.png";
 import i2 from "../assets/images/logo-inverse-4-272x170.png";
@@ -11,106 +14,25 @@ import i5 from "../assets/images/product-mini-7-100x90.png";
 import i6 from "../assets/images/banner-1-300x202.jpg";
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    $(document).ready(function() {
+      new WOW().init();
+      $(".rd-navbar").TMStickUp({});
+    });
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+  handleToggle() {
+    console.log("handleToggle");
+    $(".rd-navbar-toggle").toggleClass("active");
+    $(".toggle-original-elements").toggleClass("active");
+  }
   componentDidMount() {
     $(document).ready(function() {
       $().UItoTop({
         easingType: "easeOutQuad",
-        containerClass: "ui-to-top mdi mdi-arrow-up"
+        containerClass: "ui-to-top fa fa-angle-up",
       });
-      new WOW().init();
-      // $(".rd-navbar").TMStickUp({});
-
-      var isNoviBuilder = false;
-
-      var plugins = {
-        rdNavbar: $(".rd-navbar")
-      };
-
-      // RD Navbar
-      if (plugins.rdNavbar.length) {
-        var aliaces, i, j, len, value, values, responsiveNavbar;
-
-        aliaces = ["-", "-sm-", "-md-", "-lg-", "-xl-", "-xxl-"];
-        values = [0, 576, 768, 992, 1200, 1600];
-        responsiveNavbar = {};
-
-        for (i = j = 0, len = values.length; j < len; i = ++j) {
-          value = values[i];
-          if (!responsiveNavbar[values[i]]) {
-            responsiveNavbar[values[i]] = {};
-          }
-          if (plugins.rdNavbar.attr("data" + aliaces[i] + "layout")) {
-            responsiveNavbar[values[i]].layout = plugins.rdNavbar.attr(
-              "data" + aliaces[i] + "layout"
-            );
-          }
-          if (plugins.rdNavbar.attr("data" + aliaces[i] + "device-layout")) {
-            responsiveNavbar[values[i]]["deviceLayout"] = plugins.rdNavbar.attr(
-              "data" + aliaces[i] + "device-layout"
-            );
-          }
-          if (plugins.rdNavbar.attr("data" + aliaces[i] + "hover-on")) {
-            responsiveNavbar[values[i]]["focusOnHover"] =
-              plugins.rdNavbar.attr("data" + aliaces[i] + "hover-on") ===
-              "true";
-          }
-          if (plugins.rdNavbar.attr("data" + aliaces[i] + "auto-height")) {
-            responsiveNavbar[values[i]]["autoHeight"] =
-              plugins.rdNavbar.attr("data" + aliaces[i] + "auto-height") ===
-              "true";
-          }
-
-          if (isNoviBuilder) {
-            responsiveNavbar[values[i]]["stickUp"] = false;
-          } else if (plugins.rdNavbar.attr("data" + aliaces[i] + "stick-up")) {
-            responsiveNavbar[values[i]]["stickUp"] =
-              plugins.rdNavbar.attr("data" + aliaces[i] + "stick-up") ===
-              "true";
-          }
-
-          if (plugins.rdNavbar.attr("data" + aliaces[i] + "stick-up-offset")) {
-            responsiveNavbar[values[i]][
-              "stickUpOffset"
-            ] = plugins.rdNavbar.attr("data" + aliaces[i] + "stick-up-offset");
-          }
-        }
-
-        plugins.rdNavbar.RDNavbar({
-          anchorNav: !isNoviBuilder,
-          stickUpClone:
-            plugins.rdNavbar.attr("data-stick-up-clone") && !isNoviBuilder
-              ? plugins.rdNavbar.attr("data-stick-up-clone") === "true"
-              : false,
-          responsive: responsiveNavbar,
-          callbacks: {
-            onStuck: function() {
-              var navbarSearch = this.$element.find(".rd-search input");
-
-              if (navbarSearch) {
-                navbarSearch.val("").trigger("propertychange");
-              }
-            },
-            onDropdownOver: function() {
-              return !isNoviBuilder;
-            },
-            onUnstuck: function() {
-              if (this.$clone === null) return;
-
-              var navbarSearch = this.$clone.find(".rd-search input");
-
-              if (navbarSearch) {
-                navbarSearch.val("").trigger("propertychange");
-                navbarSearch.trigger("blur");
-              }
-            }
-          }
-        });
-
-        if (plugins.rdNavbar.attr("data-body-class")) {
-          document.body.className +=
-            " " + plugins.rdNavbar.attr("data-body-class");
-        }
-      }
     });
   }
 
